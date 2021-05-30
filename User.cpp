@@ -1,3 +1,6 @@
+//±èµµÀ± ÇÐ»ý°ú °°Àº ºÎ·ù¿¡ ¼ÓÇÏ¿© °°ÀÌ ¿Ã¸®°Ô µÇ¾ú½À´Ï´Ù.
+//±èµµÀ± ÇÐ»ýÀº user class¸¦, Àú´Â ÀÌ¸¦ »ó¼ÓÇÑ student class¿Í professor class¸¦ ÀÛ¼ºÇÏ¿´½À´Ï´Ù.
+
 #pragma once
 
 #include <iostream>
@@ -94,12 +97,12 @@ user::~user() {
 student::student(int n_student_number, const char* n_name, const char* n_password, const char* n_mail, const char* n_ph_num, const char* n_major)
     : user(n_student_number, n_name, n_password, n_mail, n_ph_num, n_major), grade(0), lecture(NULL) {}
 /* void info_time() const{
-     cout << this->name << "ë‹˜ì˜ ê°•ì˜ì‹œê°„ì€ " <<Lecture::GetLectureTime() << "ìž…ë‹ˆë‹¤!" << endl;
+     cout << this->name << "´ÔÀÇ °­ÀÇ½Ã°£Àº " <<Lecture::GetLectureTime() << "ÀÔ´Ï´Ù!" << endl;
  }double Lecture::GetLectureTime() const{
      return lectureTime;
-     }*/ //ì‹œê°„í‘œê°€ í•„ìš”í•˜ê²Œ ë˜ë©´ ë°‘ì—êº¼ëŠ” lecture classì— ë„£ì–´ì•¼í• ë“¯
+     }*/ //½Ã°£Ç¥°¡ ÇÊ¿äÇÏ°Ô µÇ¸é ¹Ø¿¡²¨´Â lecture class¿¡ ³Ö¾î¾ßÇÒµí
 void student::info_grade() const {
-    cout << this->name << "ë‹˜ì˜ ì„±ì ì€ " << this->grade << "ìž…ë‹ˆë‹¤!" << endl;
+    cout << this->name << "´ÔÀÇ ¼ºÀûÀº " << this->grade << "ÀÔ´Ï´Ù!" << endl;
 }
 
 void student::AddLecture(const char* n_lecture)
@@ -112,19 +115,19 @@ void student::Addgrade(int n_grade) {
     grade = n_grade;
 }
 
-//ìˆ˜ê°•ì‹ ì²­
+//¼ö°­½ÅÃ»
 void student::apply_lecture(LectureHandler& lectHdl) {
-    //cout << "ê°•ì˜ ëª©ë¡:" << endl;
+    //cout << "°­ÀÇ ¸ñ·Ï:" << endl;
     if (this->lecture != NULL)
     {
-        cout << "ì´ë¯¸ ìˆ˜ê°•ì‹ ì²­ëœ ê°•ì˜ê°€ ìžˆìŠµë‹ˆë‹¤." << endl;
+        cout << "ÀÌ¹Ì ¼ö°­½ÅÃ»µÈ °­ÀÇ°¡ ÀÖ½À´Ï´Ù." << endl;
     }
     else
     {
         lectHdl.showAllLecture();
         int apply;
         while (true) {
-            cout << "\n" << "ì‹ ì²­í•  ê°•ì˜ì½”ë“œì„ ìž…ë ¥í•´ì£¼ì„¸ìš” (-1 ìž…ë ¥ìœ¼ë¡œ ì·¨ì†Œ) : ";
+            cout << "\n" << "½ÅÃ»ÇÒ °­ÀÇÄÚµåÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä (-1 ÀÔ·ÂÀ¸·Î Ãë¼Ò) : ";
             cin >> apply;
             if (apply == -1)
             {
@@ -133,12 +136,12 @@ void student::apply_lecture(LectureHandler& lectHdl) {
             Lecture* lec = lectHdl.findLecture(apply);
             if (lec == NULL)
             {
-                cout << "í•´ë‹¹ ê°•ì˜ê°€ ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ìž…ë ¥í•´ì£¼ì„¸ìš”." << endl;
+                cout << "ÇØ´ç °­ÀÇ°¡ ¾ø½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl;
             }
             else if (lec->AddStudent(this->ID)) {
                 AddLecture(lectHdl.findLecture(apply)->GetLectureName());
                 system("cls");
-                cout << this->lecture << " ìˆ˜ê°•ì‹ ì²­ì— ì„±ê³µí–ˆìŠµë‹ˆë‹¤." << endl;
+                cout << this->lecture << " ¼ö°­½ÅÃ»¿¡ ¼º°øÇß½À´Ï´Ù." << endl;
                 break;
             }
         }
